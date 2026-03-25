@@ -1,0 +1,45 @@
+# Name:    Soumalya Das
+# Email:   geniussantu1983@gmail.com
+# GitHub:  https://github.com/pro-grammer-SD
+# Year:    2026
+# Repo:    https://github.com/pro-grammer-SD/gmtui
+[package]
+name = "gmtui"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.80"
+description = "A fast, keyboard-driven Gmail client for the terminal. Reads your inbox without a browser."
+license = "MIT"
+authors = ["Soumalya Das <geniussantu1983@gmail.com>"]
+repository = "https://github.com/pro-grammer-SD/gmtui"
+readme = "README.md"
+
+[[bin]]
+name = "gmtui"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+
+[dependencies]
+tokio           = { version = "1",       features = ["full"] }
+ratatui         = { version = "0.29",    features = ["crossterm"] }
+crossterm       = { version = "0.28" }
+reqwest         = { version = "0.12",    features = ["json", "rustls-tls"], default-features = false }
+serde           = { version = "1",       features = ["derive"] }
+serde_json      = { version = "1" }
+oauth2          = { version = "4" }
+dotenv          = { version = "0.15" }
+anyhow          = { version = "1" }
+thiserror       = { version = "2" }
+base64          = { version = "0.22" }
+chrono          = { version = "0.4",     features = ["serde"] }
+directories     = { version = "5" }
+url             = { version = "2" }
+toml            = { version = "0.8" }
+
+[dev-dependencies]
+tokio-test      = "0.4"

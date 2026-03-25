@@ -1,0 +1,78 @@
+# Name:    Soumalya Das
+# Email:   geniussantu1983@gmail.com
+# GitHub:  https://github.com/pro-grammer-SD
+# Year:    2026
+# Repo:    https://github.com/pro-grammer-SD/gmtui
+name: release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            use-cross: true
+          - os: macos-latest
+            target: x86_64-apple-darwin
+            use-cross: false
+          - os: macos-latest
+            target: aarch64-apple-darwin
+            use-cross: false
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            use-cross: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Install cross
+        if: matrix.use-cross
+        run: cargo install cross --locked
+
+      - name: Build
+        run: |
+          if [ "${{ matrix.use-cross }}" = "true" ]; then
+            cross build --release --target ${{ matrix.target }}
+          else
+            cargo build --release --target ${{ matrix.target }}
+          fi
+        shell: bash
+
+      - name: Package
+        run: |
+          set -e
+          BIN="target/${{ matrix.target }}/release/gmtui"
+          if [ "${{ matrix.os }}" = "windows-latest" ]; then
+            BIN="target/${{ matrix.target }}/release/gmtui.exe"
+          fi
+          OUT="gmtui-${{ matrix.target }}"
+          if [ "${{ matrix.os }}" = "windows-latest" ]; then
+            OUT="${OUT}.exe"
+          fi
+          cp "$BIN" "$OUT"
+        shell: bash
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gmtui-${{ matrix.target }}
+          path: gmtui-${{ matrix.target }}*
+
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/**/gmtui-*
