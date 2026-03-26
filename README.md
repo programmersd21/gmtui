@@ -1,5 +1,5 @@
 ![Rust](https://img.shields.io/badge/rust-stable-brightgreen)
-![Build](https://github.com/programmersd/gmtui/actions/workflows/ci.yml/badge.svg)
+![Build](https://github.com/programmersd21/gmtui/actions/workflows/ci.yml/badge.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 ![Platform](https://img.shields.io/badge/platform-linux%20%7C%20macOS%20%7C%20Windows-blue)
 
@@ -16,7 +16,7 @@ cargo install gmtui
 ### Manual Build
 
 ```
-git clone https://github.com/programmersd/gmtui
+git clone https://github.com/programmersd21/gmtui
 cd gmtui
 cargo build --release
 ```

@@ -56,5 +56,5 @@ By contributing, you agree that your work is released under the MIT License.
 
 Name: Soumalya Das  
 Email: geniussantu1983@gmail.com  
-GitHub: https://github.com/programmersd  
-Repo: https://github.com/programmersd/gmtui
+GitHub: https://github.com/programmersd21  
+Repo: https://github.com/programmersd21/gmtui
