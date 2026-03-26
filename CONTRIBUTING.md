@@ -56,5 +56,5 @@ By contributing, you agree that your work is released under the MIT License.
 
 Name: Soumalya Das  
 Email: geniussantu1983@gmail.com  
-GitHub: https://github.com/pro-grammer-SD  
-Repo: https://github.com/pro-grammer-SD/gmtui
+GitHub: https://github.com/programmersd  
+Repo: https://github.com/programmersd/gmtui
